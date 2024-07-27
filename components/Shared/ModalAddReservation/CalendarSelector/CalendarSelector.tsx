@@ -81,7 +81,6 @@ const daysBetween = date?.from && date?.to ? calculateDaysBetween(date.from, dat
       </PopoverTrigger>
       <PopoverContent className='w-auto p-0' align='start' >
         <Calendar
-        initialFocus
         mode='range'
         defaultMonth={date?.from}
         selected={date}
