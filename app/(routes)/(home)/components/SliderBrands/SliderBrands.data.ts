@@ -1,0 +1,29 @@
+export const dataBrands = [
+  {
+    url:"logo.jpg"
+  },
+  {
+    url:"logo4.jpeg"
+  },
+  {
+    url:"logo5.jpeg"
+  },
+  {
+    url:"logo6.jpeg"
+  },
+  {
+    url:"logo2.png"
+  },
+  {
+    url:"logo13.png"
+  },
+  {
+    url:"logo10.png"
+  },
+  {
+    url:"logo11.png"
+  },
+  {
+    url:"logo12.jpg"
+  },
+]
