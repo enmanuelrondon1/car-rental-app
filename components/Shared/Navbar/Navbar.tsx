@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { ToggleTheme } from "../ToggleTheme";
 import { useLovedCars } from "@/hooks/use-loved-cars";
 import { useAuth, UserButton } from "@clerk/nextjs";
 import { Heart, User } from "lucide-react";
@@ -38,6 +39,7 @@ export const Navbar = () => {
               </Button>
             </Link>
           )}
+          <ToggleTheme />
         </div>
       </div>
     </div>

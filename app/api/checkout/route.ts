@@ -24,6 +24,9 @@ export async function POST(
     };
   }
 ) {
+  // DEBUG: Check if the environment variable is loaded
+  console.log("STRIPE_API_KEY on server:", process.env.STRIPE_API_KEY);
+
   const { userId } = auth();
   const { carId, priceDay, startDate, endDate, carName } = await req.json();
 
@@ -58,18 +61,6 @@ export async function POST(
     },
   ];
 
-  const order = await db.order.create({
-    data: {
-      carId,
-      carName: carName,
-      userId: userId,
-      status: "confirmed",
-      totalAmount: totalAmount.toString(),
-      orderDate: startDate,
-      orderEndDate: endDate,
-    },
-  });
-
   const session = await stripe.checkout.sessions.create({
     line_items,
     mode: "payment",
@@ -78,13 +69,14 @@ export async function POST(
       enabled: true,
     },
     success_url: `${process.env.NEXT_PUBLIC_FRONTEND_STORE_URL}/order-confirmation`,
-    cancel_url: `${process.env.NEXT_PUBLIC_FRONTEND_STORE_URL}/order-error`,
+    cancel_url: `${process.env.NEXT_PUBLIC_FRONTEND_STORE_URL}/`,
     metadata: {
-      orderId: order.id,
       carId: carId,
-      startDate,
-      endDate,
-      numberOfDays,
+      userId: userId,
+      startDate: JSON.stringify(startDate),
+      endDate: JSON.stringify(endDate),
+      totalAmount: totalAmount.toString(),
+      carName: carName,
     },
   });
   return NextResponse.json(

@@ -7,6 +7,7 @@ import {
 import { Menu } from "lucide-react";
 import { SidebarRoutes } from "../SidebarRoutes";
 import { UserButton } from "@clerk/nextjs";
+import { ToggleTheme } from "@/components/Shared/ToggleTheme";
 
 export const NavbarDashboard = () => {
   return (
@@ -23,6 +24,7 @@ export const NavbarDashboard = () => {
       </Sheet>
       </div>
       <div className="flex items-center justify-end w-full gap-x-2" >
+        <ToggleTheme />
         <UserButton />
       </div>
 
